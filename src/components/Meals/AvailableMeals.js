@@ -8,6 +8,7 @@ const AvailableMeals = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(); // undefined
 
+  // useEffect can'y return a promise
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
@@ -16,8 +17,8 @@ const AvailableMeals = () => {
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
-      console.log(response);
       const responseData = await response.json();
+      console.log(responseData);
 
       const loadedMeals = [];
       for (const key in responseData) {
